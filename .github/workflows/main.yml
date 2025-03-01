@@ -100,11 +100,9 @@ jobs:
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
           #godot --headless --verbose --export-release "Web" "$EXPORT_DIR/web/index.html"
-          python3 -m pip install scons
-          scons platform=web target=template_release threads=no
-          
-          unzip bin/godot.web.template_release.*.zip -d "$EXPORT_DIR/web"
-
+      - name: Add COI Service Worker
+        run: |
+          wget https://github.com/gzuidhof/coi-serviceworker/raw/master/coi-serviceworker.min.js -O ./builds/web/coi-serviceworker.min.js
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
