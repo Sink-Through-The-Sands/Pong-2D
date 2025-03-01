@@ -80,9 +80,16 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13' 
-      - uses: lovasoa/setup-emscripten@master
+      - name: Setup emsdk
+        uses: mymindstorm/setup-emsdk@v14
         with:
-          emscripten-version: 'latest'
+        # Make sure to set a version number!
+          version: 4.0.4
+        # This is the name of the cache folder.
+        # The cache folder will be placed in the build directory,
+        #  so make sure it doesn't conflict with anything!
+          actions-cache-folder: 'emsdk-cache'
+        
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/
@@ -91,8 +98,6 @@ jobs:
         run: |
           mkdir -v -p build/web
           EXPORT_DIR="$(readlink -f build)"
-          ./emsdk/emsdk activate latest
-          source ./emsdk/emsdk_env.sh
           cd $PROJECT_PATH
           #godot --headless --verbose --export-release "Web" "$EXPORT_DIR/web/index.html"
           python3 -m pip install scons
