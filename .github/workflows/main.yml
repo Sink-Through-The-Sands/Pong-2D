@@ -82,7 +82,7 @@ jobs:
           python-version: '3.13' 
       - uses: lovasoa/setup-emscripten@master
         with:
-          emscripten-version: '4.0.4'
+          emscripten-version: 'latest'
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/
