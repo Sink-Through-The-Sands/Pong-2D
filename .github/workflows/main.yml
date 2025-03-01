@@ -77,18 +77,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           lfs: true
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.13' 
-      - name: Setup emsdk
-        uses: mymindstorm/setup-emsdk@v14
-        with:
-        # Make sure to set a version number!
-          version: 4.0.4
-        # This is the name of the cache folder.
-        # The cache folder will be placed in the build directory,
-        #  so make sure it doesn't conflict with anything!
-          actions-cache-folder: 'emsdk-cache'
         
       - name: Setup
         run: |
@@ -99,7 +87,7 @@ jobs:
           mkdir -v -p build/web
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
-          #godot --headless --verbose --export-release "Web" "$EXPORT_DIR/web/index.html"
+          godot --headless --verbose --export-release "Web" "$EXPORT_DIR/web/index.html"
       - name: Add COI Service Worker
         run: |
           wget https://github.com/gzuidhof/coi-serviceworker/raw/master/coi-serviceworker.min.js -O ./builds/web/coi-serviceworker.min.js
