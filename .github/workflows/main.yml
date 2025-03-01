@@ -83,6 +83,11 @@ jobs:
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
           git clone https://github.com/emscripten-core/emsdk.git
           cd emsdk 
+
+          sudo apt update
+          sudo apt install python3 python3-pip -y
+          python3 -m pip install scons
+
           ./emsdk install latest
       - name: Web Build
         run: |
@@ -92,9 +97,6 @@ jobs:
           source ./emsdk/emsdk_env.sh
           cd $PROJECT_PATH
           #godot --headless --verbose --export-release "Web" "$EXPORT_DIR/web/index.html"
-          sudo apt update
-          sudo apt install python3 python3-pip
-          python3 -m pip install scons
           scons platform=web target=template_release threads=no
           
           unzip bin/godot.web.template_release.*.zip -d "$EXPORT_DIR/web"
