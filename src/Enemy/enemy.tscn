@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://4amybqqgujh"]
+
+[ext_resource type="Texture2D" uid="uid://deal6enctay0q" path="res://icon.svg" id="1_g7i44"]
+[ext_resource type="Script" path="res://src/Enemy/enemy.gd" id="1_h3ptt"]
+
+[sub_resource type="GDScript" id="GDScript_w3wv2"]
+script/source = "extends Sprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yx8xq"]
+size = Vector2(32, 224)
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_h3ptt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.25, 1.75)
+texture = ExtResource("1_g7i44")
+script = SubResource("GDScript_w3wv2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yx8xq")

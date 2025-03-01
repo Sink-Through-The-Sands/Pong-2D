@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://bp7bmqujatnx2"]
+
+[ext_resource type="Texture2D" uid="uid://deal6enctay0q" path="res://icon.svg" id="1_5fmu5"]
+[ext_resource type="Script" path="res://src/Board/board.gd" id="1_ox6ie"]
+
+[sub_resource type="GDScript" id="GDScript_rw85s"]
+script/source = "extends Sprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c63hn"]
+size = Vector2(32, 224)
+
+[node name="Board" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_ox6ie")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.25, 1.75)
+texture = ExtResource("1_5fmu5")
+script = SubResource("GDScript_rw85s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_c63hn")
