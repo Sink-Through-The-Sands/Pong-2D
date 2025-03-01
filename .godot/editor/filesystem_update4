@@ -1,8 +1,0 @@
-res://src/Ball/character_body_2d.tscn
-res://src/Board/board.gd
-res://src/game.tscn
-res://src/Board/board.tscn
-res://src/Ball/ball.tscn
-res://src/Ball/ball.gd
-res://src/Enemy/enemy.tscn
-res://src/Enemy/enemy.gd
