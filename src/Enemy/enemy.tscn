@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://4amybqqgujh"]
+[gd_scene load_steps=6 format=3 uid="uid://4amybqqgujh"]
 
 [ext_resource type="Texture2D" uid="uid://deal6enctay0q" path="res://icon.svg" id="1_g7i44"]
 [ext_resource type="Script" path="res://src/Enemy/enemy.gd" id="1_h3ptt"]
 
-[sub_resource type="GDScript" id="GDScript_w3wv2"]
+[sub_resource type="GDScript" id="GDScript_3eo0w"]
 script/source = "extends Sprite2D
 
 
@@ -17,17 +17,29 @@ func _process(delta: float) -> void:
 	pass
 "
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yx8xq"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lrm86"]
 size = Vector2(32, 224)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jrqem"]
+radius = 16.0
+
 [node name="Enemy" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_h3ptt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.25, 1.75)
+scale = Vector2(0.25, 1.875)
 texture = ExtResource("1_g7i44")
-script = SubResource("GDScript_w3wv2")
+script = SubResource("GDScript_3eo0w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_yx8xq")
+shape = SubResource("RectangleShape2D_lrm86")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -112)
+shape = SubResource("CircleShape2D_jrqem")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(0, 112)
+shape = SubResource("CircleShape2D_jrqem")
