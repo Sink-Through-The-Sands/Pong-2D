@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bp7bmqujatnx2"]
+[gd_scene load_steps=6 format=3 uid="uid://bp7bmqujatnx2"]
 
 [ext_resource type="Texture2D" uid="uid://deal6enctay0q" path="res://icon.svg" id="1_5fmu5"]
 [ext_resource type="Script" path="res://src/Board/board.gd" id="1_ox6ie"]
@@ -20,15 +20,26 @@ func _process(delta: float) -> void:
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c63hn"]
 size = Vector2(32, 224)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_dgdh6"]
+radius = 16.0
+
 [node name="Board" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_ox6ie")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.25, 1.75)
+scale = Vector2(0.25, 1.875)
 texture = ExtResource("1_5fmu5")
 script = SubResource("GDScript_rw85s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_c63hn")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -112)
+shape = SubResource("CircleShape2D_dgdh6")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(0, 112)
+shape = SubResource("CircleShape2D_dgdh6")
