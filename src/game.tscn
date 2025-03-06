@@ -3,9 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://bp7bmqujatnx2" path="res://src/Board/board.tscn" id="1_rkwx2"]
 [ext_resource type="PackedScene" uid="uid://db14r5ec24kb2" path="res://src/Ball/ball.tscn" id="2_adeq7"]
 [ext_resource type="PackedScene" uid="uid://4amybqqgujh" path="res://src/Enemy/enemy.tscn" id="3_ixll8"]
-[ext_resource type="PackedScene" uid="uid://gypr2k17w4f1" path="res://src/BGM/bgm.tscn" id="4_yjw3d"]
 [ext_resource type="PackedScene" uid="uid://ct3pij11neeyv" path="res://src/Camera/cam.tscn" id="5_so4bv"]
 [ext_resource type="Texture2D" uid="uid://deal6enctay0q" path="res://icon.svg" id="6_o6ewy"]
+[ext_resource type="PackedScene" uid="uid://ia1yohcd57x4" path="res://src/Wall/wall.tscn" id="6_vd4eu"]
+[ext_resource type="PackedScene" uid="uid://58k0er6j1u80" path="res://src/Endpoints/endpoints.tscn" id="7_2enuy"]
 
 [sub_resource type="GDScript" id="GDScript_wjx6s"]
 script/source = "extends Node2D
@@ -19,9 +20,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wwwki"]
-size = Vector2(1744, 29.5405)
 
 [node name="Game" type="Node2D"]
 script = SubResource("GDScript_wjx6s")
@@ -39,38 +37,10 @@ scale = Vector2(0.52001, 0.48)
 position = Vector2(1016, 320)
 scale = Vector2(-0.379506, 0.480573)
 
-[node name="Walls" type="StaticBody2D" parent="."]
-
-[node name="Ceiling" type="CollisionShape2D" parent="Walls"]
-position = Vector2(672, 48)
-shape = SubResource("RectangleShape2D_wwwki")
-
-[node name="Floor" type="CollisionShape2D" parent="Walls"]
-position = Vector2(600, 592)
-scale = Vector2(1.46516, 1.01952)
-shape = SubResource("RectangleShape2D_wwwki")
-
-[node name="LeftWall" type="CollisionShape2D" parent="Walls"]
-position = Vector2(48, 320)
-rotation = 1.57079
-shape = SubResource("RectangleShape2D_wwwki")
-one_way_collision_margin = 0.0
-
-[node name="RightWall" type="CollisionShape2D" parent="Walls"]
-position = Vector2(1104, 304)
-rotation = 1.57079
-shape = SubResource("RectangleShape2D_wwwki")
-
 [node name="Separator" type="Line2D" parent="."]
 position = Vector2(173.858, -26175.4)
 scale = Vector2(0.698086, 83.304)
 points = PackedVector2Array(568.125, 318.045, 584.593, 318.045)
-
-[node name="BGM" parent="." instance=ExtResource("4_yjw3d")]
-
-[node name="Cam" parent="BGM" instance=ExtResource("5_so4bv")]
-position = Vector2(576, 320)
-scale = Vector2(-533.788, -222.08)
 
 [node name="StaticBody2D" type="Node2D" parent="."]
 
@@ -99,3 +69,12 @@ position = Vector2(-48, 314.595)
 rotation = -1.57079
 scale = Vector2(5.6912, 1.69527)
 texture = ExtResource("6_o6ewy")
+
+[node name="Cam" parent="." instance=ExtResource("5_so4bv")]
+position = Vector2(576, 320)
+rotation = 3.14159
+scale = Vector2(533.788, 222.08)
+
+[node name="Wall" parent="." instance=ExtResource("6_vd4eu")]
+
+[node name="Endpoints" parent="." groups=["walls"] instance=ExtResource("7_2enuy")]
